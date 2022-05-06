@@ -1,2 +1,2 @@
-# amazon-oa-2022
+# amazon-2022
 Top Amazon Questions -- Python 3
