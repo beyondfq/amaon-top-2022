@@ -4,30 +4,49 @@
 sliding window。注意返回值是long int， 如果用了int有隐藏的test case会过不了。
 ############################################################################
  
-Example:
+Example 1:
  
 Input: 
 stocks = [1, 4, 2, 10, 2, 3, 1, 0, 20]
 Output:
 24
 
+Example 2:
+ 
+Input: 
+stocks = [1,2,7,7,4,3,6]
+Output:
+14
+
 ############################################################################
 
+stocks = [1,2,7,7,4,3,6]
+k = 3
+def checkDuplicate(arr):
+    for item in arr:
+        if arr.count(item)>1:
+            return True
+    
 def getMaxStock(stocks, k):
-    maxStock = 0
     if len(stocks) < k:
         return -1
     if len(stocks) == k:
+        if checkDuplicate(stocks):
+            return -1
         return sum(stocks)
+    
     currSum = sum(stocks[:k])
-    for i in range(len(stocks)-k):
-        currSum = currSum + stocks[i+k] - stocks[i]
+    maxStock = currSum
+    for i in range(len(stocks)-k+1):
+        if i != 0:
+            currSum= currSum + stocks[i+k-1] - stocks[i-1]
+        if checkDuplicate(stocks[i:i+k]):
+            continue
         if currSum > maxStock:
-            maxStock = currSum
+            maxStock = currSum        
+            
     return maxStock
-        
-        
-stocks = [1, 4, 2, 10, 2, 3, 1, 0, 20]
-k = 4
+    
 res = getMaxStock(stocks, k)
 print(res)
+
