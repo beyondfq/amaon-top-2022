@@ -1,0 +1,29 @@
+#######################################################################
+Given wheels array. 
+Find the number of combinations of 2-wheel vehicle and 4-wheel vehicle such that total number of wheels = wheels[i].
+
+Eg: wheels = [4,5,2]
+Answer: [2, 0, 1]
+
+Return
+an array of integers representing the answer for each wheels[i]
+1 <= n <= 100,000
+1 <= wheels[i] <= 1,000,000
+#######################################################################
+
+def NumberofWheels(nums):
+    ans = []
+    for n in nums:
+        if n%2 == 1:
+            ans.append(0)
+        else:
+            # When n is an even number, you can have a maximum of n / 4 four-wheeled vehicles. 
+            #Each of them can be exchanged for two two-wheeled vehicles, 
+            #so the number of cases is the total count of {n / 4, ... , 2, 1, 0}
+            ans.append(int(n/4)+1)
+    return ans
+     
+    
+nums = [4,5,6]
+res = NumberofWheels(nums)
+print(res)
