@@ -12,19 +12,18 @@ Example:
 stockPrice = [1,3,2,3]
 The minimum net price change is 0, and it occurs in the 2nd month. Return 2.
 #############################################################
-
 import math
 def findMinNetPriceMonth(stockPrices):
     minNet = float('inf')
     n = len(stockPrices)
-    for i in range(len(stockPrices)):
-        part1 = math.floor(sum(stockPrices[:i])/(i+1))
-        part2 = math.floor(sum(stockPrices[i:n-1])/(n-i))
+    for i in range(len(stockPrices)-1):
+        part1 = math.floor(sum(stockPrices[:i+1])/(i+1))
+        part2 = math.floor(sum(stockPrices[i+1:n])/(n-i-1))
         diff = abs(part2-part1)
         if diff < minNet:
             minNet = diff
-            month = i
+            month = i+1
     return month
     
-res = findMinNetPriceMonth([1,3,2,3])
+res = findMinNetPriceMonth([1,3,2,4,5])
 print(res)
