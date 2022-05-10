@@ -1,0 +1,34 @@
+#########################################################
+When an array of digits is fed to ths system of 'Pascal Triangle', it sums the adjacent digits. 
+It then takes the rightmost digit( least significant digit) of each addition for the next step.
+Thus, the number of digits in each step is reduced by 1.
+This procedure is repeated until there are only 2 digits left, and this sequence of 2 digits forms the encrypted number.
+
+Given the initial sequence of the digits of numbers, find the encrypted number. 
+You should report a string of digits representing the encrypted number.
+
+Example
+numbers = [4,5,6,7] --> [9,1,3] --> [0,4]
+
+return 
+string: the encrypted number represented as a string of 2 characters.
+
+2 <= numbers.length <= 5,000
+#############################################################
+def getEncryptedNumber(nums):
+    n = len(nums)
+    if n < 3:
+        return (str(nums[0]) + str(nums[1]))
+    currRow = []
+    while n > 2:
+        for i in range(n-1):
+            currRow.append((nums[i]+nums[i+1])%10)
+        nums = currRow
+        n = len(nums)
+        currRow = []
+    return str(nums[0]) + str(nums[1])
+            
+    
+nums = [4,5,6,7]
+res = getEncryptedNumber(nums)
+print(res)
