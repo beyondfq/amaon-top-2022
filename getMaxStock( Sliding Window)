@@ -1,0 +1,33 @@
+###########################################################################
+给一个int数组，里面是股票, 全是正数，stock表示第i个月的股票。
+还有一个int k。问连续k个月的股票和的最大值。这连续k个月里不能有重复的数字。
+sliding window。注意返回值是long int， 如果用了int有隐藏的test case会过不了。
+############################################################################
+ 
+Example:
+ 
+Input: 
+stocks = [1, 4, 2, 10, 2, 3, 1, 0, 20]
+Output:
+24
+
+############################################################################
+
+def getMaxStock(stocks, k):
+    maxStock = 0
+    if len(stocks) < k:
+        return -1
+    if len(stocks) == k:
+        return sum(stocks)
+    currSum = sum(stocks[:k])
+    for i in range(len(stocks)-k):
+        currSum = currSum + stocks[i+k] - stocks[i]
+        if currSum > maxStock:
+            maxStock = currSum
+    return maxStock
+        
+        
+stocks = [1, 4, 2, 10, 2, 3, 1, 0, 20]
+k = 4
+res = getMaxStock(stocks, k)
+print(res)
