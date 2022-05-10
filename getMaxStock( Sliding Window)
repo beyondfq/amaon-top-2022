@@ -26,6 +26,9 @@ def checkDuplicate(arr):
     for item in arr:
         if arr.count(item)>1:
             return True
+    #set1 = set(arr)
+    #if len(set1) != len(arr):
+    #   return True
     
 def getMaxStock(stocks, k):
     if len(stocks) < k:
