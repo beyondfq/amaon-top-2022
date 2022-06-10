@@ -1,0 +1,28 @@
+#############################################################################
+You are given a binary string s, consisting of characters '0' and '1'. Transform this string into a pallndrome by performing some operations. 
+In one operation, swap any two characters, s[i] and s[j]. Determine the minimum number of swaps required to make the string a palindrome. 
+If it is impossible to do som then return -1.
+
+Let string s = "0100101".
+Swap characters with indices (4,5)
+Swap characters with indices (1,2)
+The binary string is now palindromic: 1001001
+The answer is 2 swaps.
+###############################################################################
+
+string = "001001"
+
+def swap(string):
+    n = len(string)
+    count = 0
+    for i in range(n//2):
+        if string[i] != string[n-i-1]:
+            count += 1
+    if count%2 == 0:
+        return count//2
+    else:
+        if n%2 == 0:
+            return -1
+        else:
+            return count//2+1
+print(swap(string))
